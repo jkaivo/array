@@ -6,7 +6,7 @@
 
 #define CHARS_PER_LINE 8
 
-int make_array(const char *path, int include_size)
+int make_array(const char *path, const char *qual, int include_size)
 {
 	FILE *f = stdin;
 
@@ -27,7 +27,10 @@ int make_array(const char *path, int include_size)
 	}
 	id[plen] = '\0';
 
-	printf("unsigned char %s[] = {\n", id);
+	if (qual && strlen(qual) > 0) {
+		printf("%s ", qual);
+	}
+	printf("char %s[] = {\n", id);
 
 	int c;
 	int i = 0;
@@ -62,13 +65,18 @@ int make_array(const char *path, int include_size)
 
 int main(int argc, char *argv[])
 {
+	char *qual = "unsigned";
 	int include_size = 0;
 	int c;
 
-	while ((c = getopt(argc, argv, "s")) != -1) {
+	while ((c = getopt(argc, argv, "sq:")) != -1) {
 		switch (c) {
 		case 's':
 			include_size = 1;
+			break;
+
+		case 'q':
+			qual = optarg;
 			break;
 
 		default:
@@ -78,7 +86,7 @@ int main(int argc, char *argv[])
 
 	int ret = 0;
 	do {
-		ret |= make_array(argv[optind++], include_size);
+		ret |= make_array(argv[optind++], qual, include_size);
 	} while (optind < argc);
 
 	return ret;

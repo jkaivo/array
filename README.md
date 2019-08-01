@@ -4,12 +4,12 @@ translate files to C arrays
 
 ## Synopsis
 
-`array [-s] [file...]`
+`array [-s] [-q qualifier] [file...]`
 
 ## Description
 
-The `array` utility translates its input into C arrays (of type
-`unsigned char`) that can then be used (via `#include`) in larger C programs.
+The `array` utility translates its input into C arrays (of a qualified type
+of `char`) that can then be used (via `#include`) in larger C programs.
 This is useful if you need to embed a binary (e.g. an image) or text (e.g.
 a template) file and need to ship a program as a single, self-contained
 executable.
@@ -17,11 +17,16 @@ executable.
 ## Options
 
 The `array` utility conforms to the XBD Utility Syntax Guidelines. It supports
-one option:
+the following options:
 
 `-s`	Include an additional identifier in the output indicating
 	the size of the array. See STDOUT below for a detailed
 	description.
+
+`-q`	Apply the C type qualifier `qualifier` to the generated array. If
+	none is provided, the default is `unsigned`. To remove any qualifiers
+	altogether (e.g. to declare an array of `char`), specify the empty
+	string (e.g. `-q ''`).
 
 ## Operands
 
@@ -41,7 +46,7 @@ Input files are treated as raw binary streams, with no requirements on format.
 
 ## STDOUT
 
-A definition of a C array of type `unsigned char` and unspecified length, with
+A definition of a C array of type qualified `char` and unspecified length, with
 members initialized to the bytes of the input file. Each array is named with
 the name of the input file, except all non alphanumeric characters (as
 identified by the function `isalnum()`) are translated to `_`. If the input
