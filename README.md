@@ -19,16 +19,16 @@ executable.
 The `array` utility conforms to the XBD Utility Syntax Guidelines. It supports
 one option:
 
-	`-s`	Include an additional identifier in the output indicating
-		the size of the array. See STDOUT below for a detailed
-		description.
+`-s`	Include an additional identifier in the output indicating
+	the size of the array. See STDOUT below for a detailed
+	description.
 
 ## Operands
 
 The `array` utility supports the following operands:
 
-	`file`	A pathname of an input file. If `-` is specified, `array`
-		reads from the standard input.
+`file`	A pathname of an input file. If `-` is specified, `array`
+	reads from the standard input.
 
 ## STDIN
 
@@ -65,8 +65,8 @@ None.
 
 ## Exit Status
 
-	0	Successful completion.
-	>0	An error occurred.
+0	Successful completion.
+>0	An error occurred.
 
 ## Consequence of Errors
 
