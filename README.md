@@ -65,8 +65,8 @@ None.
 
 ## Exit Status
 
-0	Successful completion.
->0	An error occurred.
+ 0	Successful completion.
+ >0	An error occurred.
 
 ## Consequence of Errors
 
